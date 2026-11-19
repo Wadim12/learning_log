@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>{% block title %}Learning Log{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{% url 'home' %}"><span class="brand-mark">L</span><span>learning<span class="brand-light">log</span></span></a>
+  <nav class="nav">
+    {% if user.is_authenticated %}
+      <a href="{% url 'dashboard' %}">Обзор</a><a href="{% url 'topic_list' %}">Мои темы</a>
+      <a class="nav-cta" href="{% url 'topic_create' %}">＋ Новая тема</a>
+      <span class="user-pill">{{ user.username }}</span>
+      <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="nav-link" type="submit">Выйти</button></form>
+    {% else %}
+      <a href="{% url 'login' %}">Войти</a><a class="nav-cta" href="{% url 'register' %}">Создать аккаунт</a>
+    {% endif %}
+  </nav>
+</header>
+<main class="page">
+  {% if messages %}<div class="messages">{% for message in messages %}<div class="message">{{ message }}</div>{% endfor %}</div>{% endif %}
+  {% block content %}{% endblock %}
+</main>
+<footer class="footer"><span>LEARNING LOG</span><span>Твой прогресс — твоя история.</span></footer>
+</body></html>

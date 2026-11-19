@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Регистрация · Learning Log{% endblock %}
+{% block content %}<section class="auth-wrap"><div class="auth-card"><div class="eyebrow">ТВОЯ НОВАЯ ПРИВЫЧКА</div><h1>Создай аккаунт</h1><p class="muted">Сохраняй открытия, идеи и маленькие победы.</p>
+<form method="post" class="form">{% csrf_token %}{{ form.as_p }}<button class="btn btn-primary full">Создать аккаунт →</button></form>
+<p class="auth-bottom">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p></div></section>{% endblock %}
