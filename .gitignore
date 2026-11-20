@@ -1,4 +1,7 @@
-/README.md__pycache__/
-*.pyc
 venv/
-db.sqlite3
+ll_env/
+__pycache__/
+*.py[cod]
+*.sqlite3
+.env
+staticfiles/
